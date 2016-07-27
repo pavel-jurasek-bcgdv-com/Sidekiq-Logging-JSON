@@ -9,6 +9,7 @@ module Sidekiq
         # Provide a call() method that returns the formatted message.
         def call(severity, time, program_name, message)
           {
+            'service_context' => 'sidekiq',
             '@timestamp' => time.utc.iso8601,
             '@fields' => {
               :pid => ::Process.pid,
